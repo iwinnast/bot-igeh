@@ -86,7 +86,7 @@ const Target = async function(username){
     const data = S(account).between('<script type="text/javascript">window._sharedData = ', ';</script>').s
     const json = JSON.parse(data);
     if (json.entry_data.ProfilePage[0].graphql.user.is_private) {
-      return Promise.reject('Target is private Account');
+      return Promise.reject('Target is public Account');
     } else {
       const id = json.entry_data.ProfilePage[0].graphql.user.id;
       const followers = json.entry_data.ProfilePage[0].graphql.user.edge_followed_by.count;
