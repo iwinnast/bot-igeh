@@ -189,14 +189,14 @@ const Excute = async function(User, TargetUsername, Sleep, mysyntx){
         var timeNow = new Date();
         timeNow = `${timeNow.getHours()}:${timeNow.getMinutes()}:${timeNow.getSeconds()}`
         await Promise.all(TargetResult[i].map(async(akun) => {
-          if (!getFollowers.includes(akun.id) && akun.params.isPrivate === false) {
+          if (!getFollowers.includes(akun.id) && akun.params.isPrivate === true) {
 	    var Text = fs.readFileSync('komen.txt', 'utf8').split('|');
             var ranText = Text[Math.floor(Math.random() * Text.length)];
 	    var iki = ''+akun.params.username+' '+ranText;
             const ngeDo = await CommentAndLike(doLogin.session, akun.id, iki)
             console.log(chalk`[{magenta ${timeNow}}] {bold.green [>]}${akun.params.username} => ${ngeDo}`)
           } else {
-            console.log(chalk`[{magenta ${timeNow}}] {bold.yellow [SKIP]}${akun.params.username} => PRIVATE OR ALREADY FOLLOWED`)
+            console.log(chalk`[{magenta ${timeNow}}] {bold.yellow [SKIP]}${akun.params.username} => PUBLIC OR ALREADY FOLLOWED`)
           }
         }));
         console.log(chalk`{yellow \n [#][>] Delay For ${Sleep} MiliSeconds [<][#] \n}`);
